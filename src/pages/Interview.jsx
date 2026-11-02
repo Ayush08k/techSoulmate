@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import {
   Calendar,
@@ -12,16 +12,30 @@ import {
   Award,
   Video,
   FileText,
-  ShieldCheck,
-  Globe,
-  ArrowRight
+  Star,
+  ExternalLink,
+  Download,
+  Search,
+  ChevronDown,
+  ChevronUp,
+  Brain,
+  Layers,
+  Code2,
+  MessageSquare,
+  HelpCircle,
+  BarChart3,
+  Sliders,
+  Check
 } from 'lucide-react'
 import {
   countryCodes,
   interviewPositions,
   timeSlots,
   interviewTypes,
-  mockInterviewPerks
+  mockInterviewPerks,
+  interviewMentors,
+  practiceQuestions,
+  rubricCriteria
 } from '../data/interviewData'
 import './Interview.css'
 
@@ -40,6 +54,20 @@ export default function Interview() {
   const [submittedData, setSubmittedData] = useState(null)
   const [loading, setLoading] = useState(false)
 
+  // Question Hub State
+  const [activeCategory, setActiveCategory] = useState('All')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [expandedQuestionId, setExpandedQuestionId] = useState(null)
+  const [revealedSolutionId, setRevealedSolutionId] = useState(null)
+
+  // Interactive Rubric Simulation State (scores 1-5 for 4 dimensions)
+  const [rubricScores, setRubricScores] = useState({
+    rc1: 5,
+    rc2: 4,
+    rc3: 5,
+    rc4: 4
+  })
+
   // Get tomorrow's date string YYYY-MM-DD as minimum selectable date
   const today = new Date()
   const tomorrow = new Date(today)
@@ -54,12 +82,10 @@ export default function Interview() {
   const handleSubmit = (e) => {
     e.preventDefault()
     setLoading(true)
-    // Instant submission in test environment or short animation in production
-    const delay = typeof process !== 'undefined' && process.env?.NODE_ENV === 'test' ? 0 : 250
     setTimeout(() => {
       setLoading(false)
       setSubmittedData({ ...formData })
-    }, delay)
+    }, 300)
   }
 
   const handleReset = () => {
@@ -75,6 +101,93 @@ export default function Interview() {
       notes: ''
     })
   }
+
+  // Filtered Questions
+  const filteredQuestions = useMemo(() => {
+    return practiceQuestions.filter((q) => {
+      const matchesCat = activeCategory === 'All' || q.category === activeCategory
+      const matchesQuery =
+        searchQuery.trim() === '' ||
+        q.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        q.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        q.keyConcepts.some((c) => c.toLowerCase().includes(searchQuery.toLowerCase()))
+      return matchesCat && matchesQuery
+    })
+  }, [activeCategory, searchQuery])
+
+  // Calendar Helpers (.ics file download & Google Calendar link)
+  const parseDateTime = (dateStr, timeRangeStr) => {
+    try {
+      const [startStr] = timeRangeStr.split(' - ')
+      const [time, modifier] = startStr.trim().split(' ')
+      let [hours, minutes] = time.split(':').map(Number)
+      if (modifier === 'PM' && hours < 12) hours += 12
+      if (modifier === 'AM' && hours === 12) hours = 0
+
+      const d = new Date(dateStr)
+      d.setHours(hours, minutes, 0, 0)
+      const endD = new Date(d.getTime() + 60 * 60 * 1000)
+
+      const toICSString = (dt) => {
+        return dt.toISOString().replace(/[-:]/g, '').split('.')[0] + 'Z'
+      }
+
+      return { start: toICSString(d), end: toICSString(endD) }
+    } catch {
+      return { start: '', end: '' }
+    }
+  }
+
+  const handleDownloadICS = () => {
+    if (!submittedData) return
+    const { start, end } = parseDateTime(submittedData.date, submittedData.time)
+    const icsContent = [
+      'BEGIN:VCALENDAR',
+      'VERSION:2.0',
+      'PRODID:-//TechSoulmate//Mock Interview//EN',
+      'CALSCALE:GREGORIAN',
+      'BEGIN:VEVENT',
+      `SUMMARY:TechSoulmate Mock Interview - ${submittedData.position}`,
+      `DESCRIPTION:1-on-1 Mock Technical Interview session for ${submittedData.name}. Joining link and rubric will be shared.`,
+      `LOCATION:Google Meet (Link will be sent to ${submittedData.email})`,
+      start ? `DTSTART:${start}` : '',
+      end ? `DTEND:${end}` : '',
+      'STATUS:CONFIRMED',
+      'END:VEVENT',
+      'END:VCALENDAR'
+    ].filter(Boolean).join('\r\n')
+
+    const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' })
+    const link = document.createElement('a')
+    link.href = window.URL.createObjectURL(blob)
+    link.setAttribute('download', `techsoulmate-mock-interview-${submittedData.date}.ics`)
+    document.body.appendChild(link)
+    link.click()
+    document.body.removeChild(link)
+  }
+
+  const getGoogleCalendarURL = () => {
+    if (!submittedData) return '#'
+    const { start, end } = parseDateTime(submittedData.date, submittedData.time)
+    const title = encodeURIComponent(`TechSoulmate Mock Technical Interview (${submittedData.position})`)
+    const details = encodeURIComponent(
+      `Candidate: ${submittedData.name}\nRole: ${submittedData.position}\nPrep Notes: ${submittedData.notes || 'None'}\nVideo Room: Google Meet`
+    )
+    const location = encodeURIComponent('Google Meet')
+    const dates = start && end ? `${start}/${end}` : ''
+    return `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}&location=${location}${dates ? `&dates=${dates}` : ''}`
+  }
+
+  // Simulated Total Rubric Score
+  const totalRubricPercentage = useMemo(() => {
+    const rawScore =
+      (rubricScores.rc1 * 0.25 +
+        rubricScores.rc2 * 0.3 +
+        rubricScores.rc3 * 0.25 +
+        rubricScores.rc4 * 0.2) /
+      5
+    return Math.round(rawScore * 100)
+  }, [rubricScores])
 
   return (
     <div className="interview-page">
@@ -364,7 +477,33 @@ export default function Interview() {
                       </div>
                     </div>
 
-                    <button onClick={handleReset} className="btn btn-secondary">
+                    {/* Calendar Action Buttons */}
+                    <div className="calendar-actions-wrapper">
+                      <h4 className="calendar-actions-title">
+                        <Sparkles size={16} /> Save to Your Personal Calendar
+                      </h4>
+                      <div className="calendar-actions-btns">
+                        <a
+                          href={getGoogleCalendarURL()}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="btn btn-primary btn-sm calendar-action-btn"
+                          aria-label="Add to Google Calendar"
+                        >
+                          <ExternalLink size={16} /> Add to Google Calendar
+                        </a>
+                        <button
+                          type="button"
+                          onClick={handleDownloadICS}
+                          className="btn btn-secondary btn-sm calendar-action-btn"
+                          aria-label="Download .ics Calendar File"
+                        >
+                          <Download size={16} /> Download .ics (Outlook/Apple)
+                        </button>
+                      </div>
+                    </div>
+
+                    <button onClick={handleReset} className="btn btn-secondary" style={{ marginTop: '20px' }}>
                       Book Another Mock Interview
                     </button>
                   </motion.div>
@@ -414,6 +553,344 @@ export default function Interview() {
           </div>
         </div>
       </section>
+
+      {/* NEW SECTION 1: Featured Mentors & Interviewers Showcase */}
+      <section className="section-py interview-mentors-section">
+        <div className="container">
+          <div className="section-header text-center">
+            <span className="badge badge-purple">
+              <Award size={14} /> Tier-1 Engineering Leaders
+            </span>
+            <h2 className="section-title">Meet Your Mock Interviewers</h2>
+            <p className="section-subtitle">
+              Learn from engineers who have conducted 500+ hiring loops at leading tech organizations.
+            </p>
+          </div>
+
+          <div className="mentors-grid">
+            {interviewMentors.map((mentor) => (
+              <motion.div
+                key={mentor.id}
+                className="glass-card mentor-card"
+                whileHover={{ y: -5 }}
+                transition={{ duration: 0.2 }}
+              >
+                <div className="mentor-header">
+                  <img
+                    src={mentor.avatar}
+                    alt={mentor.name}
+                    className="mentor-avatar"
+                    loading="lazy"
+                  />
+                  <div className="mentor-info">
+                    <h3 className="mentor-name">{mentor.name}</h3>
+                    <p className="mentor-role">{mentor.role}</p>
+                    <span className="mentor-company-pill">{mentor.company}</span>
+                  </div>
+                </div>
+
+                <div className="mentor-rating-bar">
+                  <div className="rating-stars">
+                    <Star size={16} className="star-filled" fill="currentColor" />
+                    <span className="rating-num">{mentor.rating}</span>
+                    <span className="rating-count">({mentor.reviewsCount} mock interviews)</span>
+                  </div>
+                </div>
+
+                <p className="mentor-bio">{mentor.bio}</p>
+
+                <div className="mentor-tags">
+                  {mentor.tags.map((tag) => (
+                    <span key={tag} className="mentor-tech-tag">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION 2: Practice Question Hub & Cheatsheets */}
+      <section className="section-py interview-questions-section">
+        <div className="container">
+          <div className="section-header text-center">
+            <span className="badge badge-blue">
+              <Code2 size={14} /> High-Yield Preparation
+            </span>
+            <h2 className="section-title">Practice Question Hub & Cheatsheets</h2>
+            <p className="section-subtitle">
+              Explore curated System Design, Data Structures, and STAR behavioral scenarios commonly asked in top-tier interviews.
+            </p>
+          </div>
+
+          {/* Question Category Tabs & Search Bar */}
+          <div className="questions-control-bar glass-card">
+            <div className="question-category-pills">
+              {['All', 'System Design', 'Data Structures & Algorithms', 'Behavioral (STAR)'].map((cat) => (
+                <button
+                  key={cat}
+                  onClick={() => setActiveCategory(cat)}
+                  className={`cat-pill-btn ${activeCategory === cat ? 'active' : ''}`}
+                >
+                  {cat}
+                </button>
+              ))}
+            </div>
+
+            <div className="questions-search-wrap">
+              <Search size={16} className="search-icon" />
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search topics, questions, or tags..."
+                className="questions-search-input"
+                aria-label="Search questions"
+              />
+            </div>
+          </div>
+
+          {/* Question List Accordion */}
+          <div className="questions-accordion-list">
+            {filteredQuestions.length === 0 ? (
+              <div className="no-questions-card glass-card">
+                <HelpCircle size={32} />
+                <p>No questions matched your search query. Try another keyword!</p>
+              </div>
+            ) : (
+              filteredQuestions.map((q) => {
+                const isExpanded = expandedQuestionId === q.id
+                const isSolutionOpen = revealedSolutionId === q.id
+
+                return (
+                  <div key={q.id} className="glass-card question-card-item">
+                    <div
+                      className="question-card-head"
+                      onClick={() => setExpandedQuestionId(isExpanded ? null : q.id)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          setExpandedQuestionId(isExpanded ? null : q.id)
+                        }
+                      }}
+                      aria-expanded={isExpanded}
+                    >
+                      <div className="question-title-group">
+                        <span className={`diff-pill diff-${q.difficulty.toLowerCase().replace(/[^a-z0-9]/g, '-')}`}>
+                          {q.difficulty}
+                        </span>
+                        <h4 className="question-title">{q.title}</h4>
+                        <span className="target-company-badge">Asked at {q.targetCompany}</span>
+                      </div>
+                      <div className="question-toggle-icon">
+                        {isExpanded ? <ChevronUp size={20} /> : <ChevronDown size={20} />}
+                      </div>
+                    </div>
+
+                    <AnimatePresence>
+                      {isExpanded && (
+                        <motion.div
+                          className="question-expanded-content"
+                          initial={{ opacity: 0, height: 0 }}
+                          animate={{ opacity: 1, height: 'auto' }}
+                          exit={{ opacity: 0, height: 0 }}
+                          transition={{ duration: 0.25 }}
+                        >
+                          <p className="question-description">{q.description}</p>
+
+                          <div className="question-concepts-row">
+                            <span className="concepts-label">Key Focus Concepts:</span>
+                            <div className="concepts-list">
+                              {q.keyConcepts.map((c) => (
+                                <span key={c} className="concept-pill">
+                                  {c}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+
+                          <div className="question-hint-box">
+                            <strong>💡 Interviewer Hint:</strong> {q.hint}
+                          </div>
+
+                          <div className="solution-actions-row">
+                            <button
+                              type="button"
+                              onClick={() => setRevealedSolutionId(isSolutionOpen ? null : q.id)}
+                              className="btn btn-outline btn-sm toggle-solution-btn"
+                            >
+                              {isSolutionOpen ? 'Hide Solution Breakdown' : 'View Recommended Approach'}
+                            </button>
+                          </div>
+
+                          {isSolutionOpen && (
+                            <motion.div
+                              className="question-solution-box"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                            >
+                              <h5>Architectural & Implementation Strategy:</h5>
+                              <p>{q.solutionOverview}</p>
+                            </motion.div>
+                          )}
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                )
+              })
+            )}
+          </div>
+        </div>
+      </section>
+
+      {/* NEW SECTION 3: Interactive Interview Rubric & Scorecard Preview */}
+      <section className="section-py interview-rubric-section">
+        <div className="container">
+          <div className="section-header text-center">
+            <span className="badge badge-emerald">
+              <BarChart3 size={14} /> Evaluation Standards
+            </span>
+            <h2 className="section-title">Interview Rubric & Scorecard Preview</h2>
+            <p className="section-subtitle">
+              Explore how candidates are assessed across core engineering competencies. Simulate scores to see what it takes to land a "Strong Hire" recommendation.
+            </p>
+          </div>
+
+          <div className="rubric-interactive-grid">
+            {/* Left: Criteria Breakdown Cards */}
+            <div className="rubric-cards-col">
+              {rubricCriteria.map((item) => (
+                <div key={item.id} className="glass-card rubric-criterion-card">
+                  <div className="criterion-header">
+                    <div className="criterion-title-wrap">
+                      <div className="criterion-icon-badge">
+                        {item.dimension.includes('Problem') ? (
+                          <Brain size={20} />
+                        ) : item.dimension.includes('System') ? (
+                          <Layers size={20} />
+                        ) : item.dimension.includes('Code') ? (
+                          <Code2 size={20} />
+                        ) : (
+                          <MessageSquare size={20} />
+                        )}
+                      </div>
+                      <div>
+                        <h4>{item.dimension}</h4>
+                        <span className="criterion-weight-label">Weight: {item.weight}</span>
+                      </div>
+                    </div>
+
+                    {/* Interactive Score Selector (1-5) */}
+                    <div className="score-selector-wrap">
+                      <label htmlFor={`score-${item.id}`} className="score-select-label">
+                        Rating:
+                      </label>
+                      <select
+                        id={`score-${item.id}`}
+                        value={rubricScores[item.id] || 4}
+                        onChange={(e) =>
+                          setRubricScores((prev) => ({
+                            ...prev,
+                            [item.id]: Number(e.target.value)
+                          }))
+                        }
+                        className="form-select score-dropdown"
+                        aria-label={`Score for ${item.dimension}`}
+                      >
+                        <option value="5">5 - Exceptional</option>
+                        <option value="4">4 - Strong Hire</option>
+                        <option value="3">3 - Leaning Hire</option>
+                        <option value="2">2 - Developing</option>
+                        <option value="1">1 - Needs Focus</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="criterion-levels-grid">
+                    <div className="level-box level-excellent">
+                      <span className="level-badge">
+                        <Check size={14} /> Strong Hire Standard (4-5)
+                      </span>
+                      <p>{item.excellent}</p>
+                    </div>
+                    <div className="level-box level-developing">
+                      <span className="level-badge developing-badge">Developing (1-2)</span>
+                      <p>{item.developing}</p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Right: Real-Time Scorecard Summary Simulator */}
+            <div className="rubric-simulator-col">
+              <div className="glass-card rubric-summary-sticky">
+                <div className="simulator-header">
+                  <Sliders size={20} className="simulator-icon" />
+                  <h3>Simulated Scorecard</h3>
+                </div>
+
+                <div className="score-gauge-box">
+                  <div className="score-percentage-ring">
+                    <span className="score-percentage-num">{totalRubricPercentage}%</span>
+                    <span className="score-percentage-label">Overall Index</span>
+                  </div>
+
+                  <div className="hire-decision-badge">
+                    {totalRubricPercentage >= 85 ? (
+                      <span className="decision-tag tag-strong-hire">🌟 Recommendation: Strong Hire</span>
+                    ) : totalRubricPercentage >= 70 ? (
+                      <span className="decision-tag tag-hire">✅ Recommendation: Hire</span>
+                    ) : (
+                      <span className="decision-tag tag-leaning">⚠️ Recommendation: More Practice Recommended</span>
+                    )}
+                  </div>
+                </div>
+
+                <div className="rubric-weights-list">
+                  <div className="weight-item">
+                    <span>Problem Solving</span>
+                    <strong>{rubricScores.rc1}/5</strong>
+                  </div>
+                  <div className="weight-item">
+                    <span>System Architecture</span>
+                    <strong>{rubricScores.rc2}/5</strong>
+                  </div>
+                  <div className="weight-item">
+                    <span>Code Quality</span>
+                    <strong>{rubricScores.rc3}/5</strong>
+                  </div>
+                  <div className="weight-item">
+                    <span>Communication</span>
+                    <strong>{rubricScores.rc4}/5</strong>
+                  </div>
+                </div>
+
+                <div className="rubric-cta-wrap">
+                  <p className="rubric-note">
+                    All candidates receive this rubric scorecard with timestamped feedback delivered within 2 hours after the session.
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      const el = document.getElementById('interview-name')
+                      if (el) el.scrollIntoView({ behavior: 'smooth' })
+                    }}
+                    className="btn btn-primary btn-block"
+                  >
+                    Schedule Your Session Now
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   )
 }
+

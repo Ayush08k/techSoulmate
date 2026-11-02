@@ -61,7 +61,7 @@ describe('Full App Integration Flow', () => {
 
     const bookBtn = screen.getByRole('button', { name: /book mock interview now/i })
     fireEvent.click(bookBtn)
-    expect(await screen.findByRole('heading', { name: /interview scheduled successfully!/i })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /interview scheduled successfully!/i }, { timeout: 3000 })).toBeInTheDocument()
 
     // 6. Open Global Contact Modal from Navbar CTA
     const headerBanner = screen.getByRole('banner')

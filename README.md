@@ -4,7 +4,7 @@
 TechSoulmate is a high-performance, modern React web application built with clean architecture, fluid micro-animations, glassmorphism design, and test-driven engineering. It showcases software development capabilities, 24/7 IT operations, software maintenance/modernization, and 1-on-1 mock technical interview mentorship.
 
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]()
-[![Tests](https://img.shields.io/badge/tests-36%20passed-success.svg)]()
+[![Tests](https://img.shields.io/badge/tests-40%20passed-success.svg)]()
 [![React](https://img.shields.io/badge/React-19-blue.svg)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-8-purple.svg)](https://vitejs.dev/)
 [![Framer Motion](https://img.shields.io/badge/Framer%20Motion-14-pink.svg)](https://www.framer.com/motion/)
@@ -13,17 +13,26 @@ TechSoulmate is a high-performance, modern React web application built with clea
 
 ## 🌟 Key Features
 
-### 1. 🎯 1-on-1 Mock Technical Interview Scheduling
+### 1. 🎯 1-on-1 Mock Technical Interview Platform & Mentorship
 - **Comprehensive Booking Engine**: Candidates schedule live 1-on-1 interview practice sessions with staff engineers and tech leads.
-- **Form Controls**:
+- **Form Controls & Validation**:
   - Full Candidate Name & Email verification.
-  - International Country Code Selector (`+91`, `+1`, `+44`, `+61`, `+49`, `+33`, `+65`, `+971`, etc.) with flag indicators paired with phone input.
-  - Role/Position dropdown (*Senior Full-Stack*, *Frontend*, *Backend*, *DevOps*, *Mobile*, *QA Automation*, *AI/ML*).
-  - Native Calendar Date Picker restricted to future dates.
-  - Time slot selection across morning, afternoon, and evening windows.
-  - Optional custom preparation topics / target companies.
-- **Session Confirmation State**: Real-time summary overview with confirmed slot, calendar invite notice, and 1-click rebooking.
-- **Track Options**: Live pair-programming, system design deep-dives, managerial/STAR behavioral evaluation, and end-to-end FAANG simulations.
+  - International Country Code Selector with flag indicators paired with phone input.
+  - Role/Position dropdown across frontend, backend, devops, AI/ML, and architecture.
+  - Native Calendar Date Picker restricted to future dates and time slot selection.
+- **Save to Calendar Integration**:
+  - **1-Click Add to Google Calendar** with automated pre-filled event title, slot timing, candidate profile, and video room location.
+  - **Download .ics (iCalendar) file** compatible with Outlook, Apple Calendar, and Thunderbird.
+- **Interviewer & Mentor Profiles Showcase**:
+  - Profile cards highlighting Tier-1 leaders (Ex-Google Cloud, Ex-Meta/Stripe, Ex-Amazon AWS Bar Raiser, Ex-Snowflake).
+  - Domain badges, rating stars, and interview review counts.
+- **Interactive Practice Question Hub & Cheatsheets**:
+  - Filterable by track: *System Design*, *Data Structures & Algorithms*, and *Behavioral (STAR)*.
+  - Live search bar by keyword, topic, or company tag.
+  - Interactive accordions with focus concepts, interviewer hints, and expandable architecture solutions.
+- **Interactive Interview Rubric & Scorecard Preview**:
+  - Granular breakdown of 4 evaluation dimensions: *Problem Solving (25%)*, *System Architecture (30%)*, *Code Quality (25%)*, and *Communication (20%)*.
+  - Interactive rating dropdowns simulating candidate performance with real-time percentage gauge and automatic hiring recommendations (*Strong Hire*, *Hire*, or *More Practice Recommended*).
 
 ### 2. 🛠️ Specialized Engineering Services
 - **Custom Software Development**: Enterprise SaaS, full-stack React/Node.js, mobile apps (React Native/Flutter), cloud microservices.
