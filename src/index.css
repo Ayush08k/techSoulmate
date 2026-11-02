@@ -109,7 +109,7 @@ a {
   -webkit-text-fill-color: transparent;
 }
 
-/* Glassmorphism Cards */
+/* Glassmorphism Cards with Individual Hover Border Color & Matching Shadows */
 .glass-card {
   background: var(--bg-card);
   backdrop-filter: blur(16px);
@@ -122,8 +122,133 @@ a {
 
 .glass-card:hover {
   background: var(--bg-card-hover);
-  border-color: rgba(225, 29, 116, 0.3);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-4px);
+}
+
+/* Individual cycling card hover accents & matching ambient shadows */
+/* Card 1: Electric Rose / Vibrant Pink */
+.glass-card:nth-child(6n + 1):hover,
+.service-preview-card:nth-child(6n + 1):hover,
+.why-card:nth-child(6n + 1):hover,
+.testimonial-card:nth-child(6n + 1):hover,
+.leader-card:nth-child(6n + 1):hover,
+.value-card:nth-child(6n + 1):hover,
+.job-card:nth-child(6n + 1):hover,
+.interview-feature-item:nth-child(6n + 1):hover,
+.process-card:nth-child(6n + 1):hover {
+  border-color: #E11D74;
+  box-shadow: 0 16px 36px -8px rgba(225, 29, 116, 0.28), 0 0 0 1px rgba(225, 29, 116, 0.2);
+}
+
+/* Card 2: Deep Indigo / Electric Violet */
+.glass-card:nth-child(6n + 2):hover,
+.service-preview-card:nth-child(6n + 2):hover,
+.why-card:nth-child(6n + 2):hover,
+.testimonial-card:nth-child(6n + 2):hover,
+.leader-card:nth-child(6n + 2):hover,
+.value-card:nth-child(6n + 2):hover,
+.job-card:nth-child(6n + 2):hover,
+.interview-feature-item:nth-child(6n + 2):hover,
+.process-card:nth-child(6n + 2):hover {
+  border-color: #6366F1;
+  box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.28), 0 0 0 1px rgba(99, 102, 241, 0.2);
+}
+
+/* Card 3: Cyber Cyan / Teal */
+.glass-card:nth-child(6n + 3):hover,
+.service-preview-card:nth-child(6n + 3):hover,
+.why-card:nth-child(6n + 3):hover,
+.testimonial-card:nth-child(6n + 3):hover,
+.leader-card:nth-child(6n + 3):hover,
+.value-card:nth-child(6n + 3):hover,
+.job-card:nth-child(6n + 3):hover,
+.interview-feature-item:nth-child(6n + 3):hover,
+.process-card:nth-child(6n + 3):hover {
+  border-color: #06B6D4;
+  box-shadow: 0 16px 36px -8px rgba(6, 182, 212, 0.28), 0 0 0 1px rgba(6, 182, 212, 0.2);
+}
+
+/* Card 4: Vivid Amber / Tangerine */
+.glass-card:nth-child(6n + 4):hover,
+.service-preview-card:nth-child(6n + 4):hover,
+.why-card:nth-child(6n + 4):hover,
+.testimonial-card:nth-child(6n + 4):hover,
+.leader-card:nth-child(6n + 4):hover,
+.value-card:nth-child(6n + 4):hover,
+.job-card:nth-child(6n + 4):hover,
+.interview-feature-item:nth-child(6n + 4):hover,
+.process-card:nth-child(6n + 4):hover {
+  border-color: #F59E0B;
+  box-shadow: 0 16px 36px -8px rgba(245, 158, 11, 0.28), 0 0 0 1px rgba(245, 158, 11, 0.2);
+}
+
+/* Card 5: Emerald Mint / Forest Green */
+.glass-card:nth-child(6n + 5):hover,
+.service-preview-card:nth-child(6n + 5):hover,
+.why-card:nth-child(6n + 5):hover,
+.testimonial-card:nth-child(6n + 5):hover,
+.leader-card:nth-child(6n + 5):hover,
+.value-card:nth-child(6n + 5):hover,
+.job-card:nth-child(6n + 5):hover,
+.interview-feature-item:nth-child(6n + 5):hover,
+.process-card:nth-child(6n + 5):hover {
+  border-color: #10B981;
+  box-shadow: 0 16px 36px -8px rgba(16, 185, 129, 0.28), 0 0 0 1px rgba(16, 185, 129, 0.2);
+}
+
+/* Card 6: Purple Orchid / Magenta */
+.glass-card:nth-child(6n + 6):hover,
+.service-preview-card:nth-child(6n + 6):hover,
+.why-card:nth-child(6n + 6):hover,
+.testimonial-card:nth-child(6n + 6):hover,
+.leader-card:nth-child(6n + 6):hover,
+.value-card:nth-child(6n + 6):hover,
+.job-card:nth-child(6n + 6):hover,
+.interview-feature-item:nth-child(6n + 6):hover,
+.process-card:nth-child(6n + 6):hover {
+  border-color: #8B5CF6;
+  box-shadow: 0 16px 36px -8px rgba(139, 92, 246, 0.28), 0 0 0 1px rgba(139, 92, 246, 0.2);
+}
+
+/* Standalone cards: CEO card, Form card, Contact channel card */
+.contact-channel-card:hover {
+  border-color: #06B6D4 !important;
+  box-shadow: 0 18px 40px -8px rgba(6, 182, 212, 0.28) !important;
+}
+
+.contact-form-card:hover {
+  border-color: #E11D74 !important;
+  box-shadow: 0 18px 40px -8px rgba(225, 29, 116, 0.28) !important;
+}
+
+.interview-form-card:hover {
+  border-color: #6366F1 !important;
+  box-shadow: 0 18px 40px -8px rgba(99, 102, 241, 0.28) !important;
+}
+
+.interview-types-card:hover {
+  border-color: #F59E0B !important;
+  box-shadow: 0 18px 40px -8px rgba(245, 158, 11, 0.28) !important;
+}
+
+.interview-prep-tips-card:hover {
+  border-color: #10B981 !important;
+  box-shadow: 0 18px 40px -8px rgba(16, 185, 129, 0.28) !important;
+}
+
+.ceo-profile-card:hover {
+  border-color: #EC4899 !important;
+  box-shadow: 0 18px 40px -8px rgba(236, 72, 153, 0.28) !important;
+}
+
+.service-detail-card:hover {
+  border-color: #E11D74 !important;
+  box-shadow: 0 18px 40px -8px rgba(225, 29, 116, 0.28) !important;
+}
+
+.footer-banner:hover {
+  border-color: #10B981 !important;
+  box-shadow: 0 20px 45px -10px rgba(16, 185, 129, 0.3) !important;
 }
 
 /* Buttons */
