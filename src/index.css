@@ -126,129 +126,173 @@ a {
 }
 
 /* Individual cycling card hover accents & matching ambient shadows */
-/* Card 1: Electric Rose / Vibrant Pink */
-.glass-card:nth-child(6n + 1):hover,
-.service-preview-card:nth-child(6n + 1):hover,
-.why-card:nth-child(6n + 1):hover,
-.testimonial-card:nth-child(6n + 1):hover,
-.leader-card:nth-child(6n + 1):hover,
-.value-card:nth-child(6n + 1):hover,
-.job-card:nth-child(6n + 1):hover,
-.interview-feature-item:nth-child(6n + 1):hover,
-.process-card:nth-child(6n + 1):hover {
-  border-color: #E11D74;
-  box-shadow: 0 16px 36px -8px rgba(225, 29, 116, 0.28), 0 0 0 1px rgba(225, 29, 116, 0.2);
+/* Card 1: Soft Light Rose / Blush Pink */
+.glass-card:nth-child(8n + 1):hover,
+.service-preview-card:nth-child(8n + 1):hover,
+.why-card:nth-child(8n + 1):hover,
+.testimonial-card:nth-child(8n + 1):hover,
+.leader-card:nth-child(8n + 1):hover,
+.value-card:nth-child(8n + 1):hover,
+.job-card:nth-child(8n + 1):hover,
+.interview-feature-item:nth-child(8n + 1):hover,
+.process-card:nth-child(8n + 1):hover {
+  border-color: #F43F5E;
+  background: rgba(255, 245, 247, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(244, 63, 94, 0.25), 0 0 0 1px rgba(244, 63, 94, 0.25);
 }
 
-/* Card 2: Deep Indigo / Electric Violet */
-.glass-card:nth-child(6n + 2):hover,
-.service-preview-card:nth-child(6n + 2):hover,
-.why-card:nth-child(6n + 2):hover,
-.testimonial-card:nth-child(6n + 2):hover,
-.leader-card:nth-child(6n + 2):hover,
-.value-card:nth-child(6n + 2):hover,
-.job-card:nth-child(6n + 2):hover,
-.interview-feature-item:nth-child(6n + 2):hover,
-.process-card:nth-child(6n + 2):hover {
-  border-color: #6366F1;
-  box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.28), 0 0 0 1px rgba(99, 102, 241, 0.2);
+/* Card 2: Light Sky Blue / Soft Azure */
+.glass-card:nth-child(8n + 2):hover,
+.service-preview-card:nth-child(8n + 2):hover,
+.why-card:nth-child(8n + 2):hover,
+.testimonial-card:nth-child(8n + 2):hover,
+.leader-card:nth-child(8n + 2):hover,
+.value-card:nth-child(8n + 2):hover,
+.job-card:nth-child(8n + 2):hover,
+.interview-feature-item:nth-child(8n + 2):hover,
+.process-card:nth-child(8n + 2):hover {
+  border-color: #38BDF8;
+  background: rgba(240, 249, 255, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(56, 189, 248, 0.28), 0 0 0 1px rgba(56, 189, 248, 0.25);
 }
 
-/* Card 3: Cyber Cyan / Teal */
-.glass-card:nth-child(6n + 3):hover,
-.service-preview-card:nth-child(6n + 3):hover,
-.why-card:nth-child(6n + 3):hover,
-.testimonial-card:nth-child(6n + 3):hover,
-.leader-card:nth-child(6n + 3):hover,
-.value-card:nth-child(6n + 3):hover,
-.job-card:nth-child(6n + 3):hover,
-.interview-feature-item:nth-child(6n + 3):hover,
-.process-card:nth-child(6n + 3):hover {
-  border-color: #06B6D4;
-  box-shadow: 0 16px 36px -8px rgba(6, 182, 212, 0.28), 0 0 0 1px rgba(6, 182, 212, 0.2);
-}
-
-/* Card 4: Vivid Amber / Tangerine */
-.glass-card:nth-child(6n + 4):hover,
-.service-preview-card:nth-child(6n + 4):hover,
-.why-card:nth-child(6n + 4):hover,
-.testimonial-card:nth-child(6n + 4):hover,
-.leader-card:nth-child(6n + 4):hover,
-.value-card:nth-child(6n + 4):hover,
-.job-card:nth-child(6n + 4):hover,
-.interview-feature-item:nth-child(6n + 4):hover,
-.process-card:nth-child(6n + 4):hover {
-  border-color: #F59E0B;
-  box-shadow: 0 16px 36px -8px rgba(245, 158, 11, 0.28), 0 0 0 1px rgba(245, 158, 11, 0.2);
-}
-
-/* Card 5: Emerald Mint / Forest Green */
-.glass-card:nth-child(6n + 5):hover,
-.service-preview-card:nth-child(6n + 5):hover,
-.why-card:nth-child(6n + 5):hover,
-.testimonial-card:nth-child(6n + 5):hover,
-.leader-card:nth-child(6n + 5):hover,
-.value-card:nth-child(6n + 5):hover,
-.job-card:nth-child(6n + 5):hover,
-.interview-feature-item:nth-child(6n + 5):hover,
-.process-card:nth-child(6n + 5):hover {
+/* Card 3: Light Emerald / Fresh Pastel Mint */
+.glass-card:nth-child(8n + 3):hover,
+.service-preview-card:nth-child(8n + 3):hover,
+.why-card:nth-child(8n + 3):hover,
+.testimonial-card:nth-child(8n + 3):hover,
+.leader-card:nth-child(8n + 3):hover,
+.value-card:nth-child(8n + 3):hover,
+.job-card:nth-child(8n + 3):hover,
+.interview-feature-item:nth-child(8n + 3):hover,
+.process-card:nth-child(8n + 3):hover {
   border-color: #10B981;
-  box-shadow: 0 16px 36px -8px rgba(16, 185, 129, 0.28), 0 0 0 1px rgba(16, 185, 129, 0.2);
+  background: rgba(236, 253, 245, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(16, 185, 129, 0.25), 0 0 0 1px rgba(16, 185, 129, 0.25);
 }
 
-/* Card 6: Purple Orchid / Magenta */
-.glass-card:nth-child(6n + 6):hover,
-.service-preview-card:nth-child(6n + 6):hover,
-.why-card:nth-child(6n + 6):hover,
-.testimonial-card:nth-child(6n + 6):hover,
-.leader-card:nth-child(6n + 6):hover,
-.value-card:nth-child(6n + 6):hover,
-.job-card:nth-child(6n + 6):hover,
-.interview-feature-item:nth-child(6n + 6):hover,
-.process-card:nth-child(6n + 6):hover {
-  border-color: #8B5CF6;
-  box-shadow: 0 16px 36px -8px rgba(139, 92, 246, 0.28), 0 0 0 1px rgba(139, 92, 246, 0.2);
+/* Card 4: Light Warm Peach / Apricot */
+.glass-card:nth-child(8n + 4):hover,
+.service-preview-card:nth-child(8n + 4):hover,
+.why-card:nth-child(8n + 4):hover,
+.testimonial-card:nth-child(8n + 4):hover,
+.leader-card:nth-child(8n + 4):hover,
+.value-card:nth-child(8n + 4):hover,
+.job-card:nth-child(8n + 4):hover,
+.interview-feature-item:nth-child(8n + 4):hover,
+.process-card:nth-child(8n + 4):hover {
+  border-color: #FB923C;
+  background: rgba(255, 247, 237, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(251, 146, 60, 0.25), 0 0 0 1px rgba(251, 146, 60, 0.25);
 }
 
-/* Standalone cards: CEO card, Form card, Contact channel card */
+/* Card 5: Soft Lavender / Lilac */
+.glass-card:nth-child(8n + 5):hover,
+.service-preview-card:nth-child(8n + 5):hover,
+.why-card:nth-child(8n + 5):hover,
+.testimonial-card:nth-child(8n + 5):hover,
+.leader-card:nth-child(8n + 5):hover,
+.value-card:nth-child(8n + 5):hover,
+.job-card:nth-child(8n + 5):hover,
+.interview-feature-item:nth-child(8n + 5):hover,
+.process-card:nth-child(8n + 5):hover {
+  border-color: #A855F7;
+  background: rgba(250, 245, 255, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(168, 85, 247, 0.25), 0 0 0 1px rgba(168, 85, 247, 0.25);
+}
+
+/* Card 6: Light Lemon / Golden Honey */
+.glass-card:nth-child(8n + 6):hover,
+.service-preview-card:nth-child(8n + 6):hover,
+.why-card:nth-child(8n + 6):hover,
+.testimonial-card:nth-child(8n + 6):hover,
+.leader-card:nth-child(8n + 6):hover,
+.value-card:nth-child(8n + 6):hover,
+.job-card:nth-child(8n + 6):hover,
+.interview-feature-item:nth-child(8n + 6):hover,
+.process-card:nth-child(8n + 6):hover {
+  border-color: #EAB308;
+  background: rgba(254, 252, 232, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(234, 179, 8, 0.25), 0 0 0 1px rgba(234, 179, 8, 0.25);
+}
+
+/* Card 7: Light Turquoise / Aquamarine */
+.glass-card:nth-child(8n + 7):hover,
+.service-preview-card:nth-child(8n + 7):hover,
+.why-card:nth-child(8n + 7):hover,
+.testimonial-card:nth-child(8n + 7):hover,
+.leader-card:nth-child(8n + 7):hover,
+.value-card:nth-child(8n + 7):hover,
+.job-card:nth-child(8n + 7):hover,
+.interview-feature-item:nth-child(8n + 7):hover,
+.process-card:nth-child(8n + 7):hover {
+  border-color: #14B8A6;
+  background: rgba(240, 253, 250, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(20, 184, 166, 0.25), 0 0 0 1px rgba(20, 184, 166, 0.25);
+}
+
+/* Card 8: Soft Indigo / Periwinkle */
+.glass-card:nth-child(8n + 8):hover,
+.service-preview-card:nth-child(8n + 8):hover,
+.why-card:nth-child(8n + 8):hover,
+.testimonial-card:nth-child(8n + 8):hover,
+.leader-card:nth-child(8n + 8):hover,
+.value-card:nth-child(8n + 8):hover,
+.job-card:nth-child(8n + 8):hover,
+.interview-feature-item:nth-child(8n + 8):hover,
+.process-card:nth-child(8n + 8):hover {
+  border-color: #6366F1;
+  background: rgba(238, 242, 255, 0.98);
+  box-shadow: 0 16px 36px -8px rgba(99, 102, 241, 0.25), 0 0 0 1px rgba(99, 102, 241, 0.25);
+}
+
+/* Standalone cards: Distinct curated light accents */
 .contact-channel-card:hover {
-  border-color: #06B6D4 !important;
-  box-shadow: 0 18px 40px -8px rgba(6, 182, 212, 0.28) !important;
+  border-color: #38BDF8 !important;
+  background: rgba(240, 249, 255, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(56, 189, 248, 0.28) !important;
 }
 
 .contact-form-card:hover {
-  border-color: #E11D74 !important;
-  box-shadow: 0 18px 40px -8px rgba(225, 29, 116, 0.28) !important;
+  border-color: #F43F5E !important;
+  background: rgba(255, 245, 247, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(244, 63, 94, 0.25) !important;
 }
 
 .interview-form-card:hover {
   border-color: #6366F1 !important;
-  box-shadow: 0 18px 40px -8px rgba(99, 102, 241, 0.28) !important;
+  background: rgba(238, 242, 255, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(99, 102, 241, 0.25) !important;
 }
 
 .interview-types-card:hover {
-  border-color: #F59E0B !important;
-  box-shadow: 0 18px 40px -8px rgba(245, 158, 11, 0.28) !important;
+  border-color: #FB923C !important;
+  background: rgba(255, 247, 237, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(251, 146, 60, 0.25) !important;
 }
 
 .interview-prep-tips-card:hover {
   border-color: #10B981 !important;
-  box-shadow: 0 18px 40px -8px rgba(16, 185, 129, 0.28) !important;
+  background: rgba(236, 253, 245, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(16, 185, 129, 0.25) !important;
 }
 
 .ceo-profile-card:hover {
-  border-color: #EC4899 !important;
-  box-shadow: 0 18px 40px -8px rgba(236, 72, 153, 0.28) !important;
+  border-color: #A855F7 !important;
+  background: rgba(250, 245, 255, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(168, 85, 247, 0.25) !important;
 }
 
 .service-detail-card:hover {
-  border-color: #E11D74 !important;
-  box-shadow: 0 18px 40px -8px rgba(225, 29, 116, 0.28) !important;
+  border-color: #F43F5E !important;
+  background: rgba(255, 245, 247, 0.98) !important;
+  box-shadow: 0 18px 40px -8px rgba(244, 63, 94, 0.25) !important;
 }
 
 .footer-banner:hover {
-  border-color: #10B981 !important;
-  box-shadow: 0 20px 45px -10px rgba(16, 185, 129, 0.3) !important;
+  border-color: #14B8A6 !important;
+  background: rgba(240, 253, 250, 0.98) !important;
+  box-shadow: 0 20px 45px -10px rgba(20, 184, 166, 0.28) !important;
 }
 
 /* Buttons */
