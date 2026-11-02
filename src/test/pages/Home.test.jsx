@@ -18,7 +18,7 @@ describe('Home Page', () => {
     expect(screen.getByRole('button', { name: /get free consultation/i })).toBeInTheDocument()
   })
 
-  it('renders all 3 core service cards', () => {
+  it('renders all core service cards', () => {
     render(
       <Home
         setCurrentPage={mockSetCurrentPage}
@@ -28,6 +28,7 @@ describe('Home Page', () => {
     expect(screen.getByRole('heading', { name: /custom software development/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /it support & managed services/i })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: /software maintenance & upgradation/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /mock technical interview/i })).toBeInTheDocument()
   })
 
   it('navigates to services page when clicking Explore Services', () => {

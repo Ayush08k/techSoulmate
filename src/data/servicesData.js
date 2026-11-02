@@ -46,6 +46,22 @@ export const servicesData = [
     ],
     technologies: ['Vite', 'GraphQL', 'Redis', 'Jest/Vitest', 'GitHub Actions', 'SonarQube', 'Prisma', 'Tailwind'],
     deliverables: 'Zero-downtime migration plans, up to 3x performance speedups, continuous regression protection.'
+  },
+  {
+    id: 'mock-interview',
+    title: 'Mock Technical Interview & Mentorship',
+    shortDescription: '1-on-1 simulated engineering interview rounds, system design reviews, and actionable scorecards led by tier-1 company tech leads.',
+    badge: '1-on-1 Mentorship',
+    icon: 'Video',
+    features: [
+      'Live Coding & Data Structures Pair Programming Sessions',
+      'High-Scale Distributed System Design & Architecture Deep Dives',
+      'Managerial, Behavioral & STAR Methodology Leadership Rounds',
+      'Granular Rubric Evaluation & Performance Scorecard within 2 Hours',
+      'Full Session HD Recording & Actionable Revision Study Notes'
+    ],
+    technologies: ['System Design', 'Algorithms', 'LeetCode Hard', 'Distributed Systems', 'Microservices', 'Google Meet', 'Live IDE Pair Coding', 'Behavioral STAR'],
+    deliverables: 'Detailed competency scorecard, recorded session link, personalized study roadmap, and interview readiness index.'
   }
 ];
 

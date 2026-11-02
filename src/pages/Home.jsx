@@ -3,6 +3,7 @@ import {
   Code2,
   Headphones,
   RefreshCw,
+  Video,
   ArrowRight,
   ShieldCheck,
   Zap,
@@ -26,6 +27,8 @@ export default function Home({ setCurrentPage, openContactModal }) {
         return <Headphones size={28} className="service-icon" />
       case 'RefreshCw':
         return <RefreshCw size={28} className="service-icon" />
+      case 'Video':
+        return <Video size={28} className="service-icon" />
       default:
         return <Code2 size={28} className="service-icon" />
     }

@@ -43,7 +43,7 @@ export default function App() {
       case 'about':
         return <About openContactModal={openContactModal} />
       case 'services':
-        return <Services openContactModal={openContactModal} />
+        return <Services openContactModal={openContactModal} setCurrentPage={setCurrentPage} />
       case 'careers':
         return <Careers openApplyModal={openApplyModal} />
       case 'interview':

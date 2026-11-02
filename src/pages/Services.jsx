@@ -4,6 +4,8 @@ import {
   Code2,
   Headphones,
   RefreshCw,
+  Video,
+  Calendar,
   CheckCircle,
   ArrowRight,
   ShieldCheck,
@@ -14,7 +16,7 @@ import {
 import { servicesData, processSteps } from '../data/servicesData'
 import './Services.css'
 
-export default function Services({ openContactModal }) {
+export default function Services({ openContactModal, setCurrentPage }) {
   const [activeTabId, setActiveTabId] = useState(servicesData[0].id)
 
   const activeService = servicesData.find((s) => s.id === activeTabId) || servicesData[0]
@@ -27,6 +29,8 @@ export default function Services({ openContactModal }) {
         return <Headphones size={24} />
       case 'RefreshCw':
         return <RefreshCw size={24} />
+      case 'Video':
+        return <Video size={24} />
       default:
         return <Code2 size={24} />
     }
@@ -141,16 +145,35 @@ export default function Services({ openContactModal }) {
 
                   <div className="sidebar-cta-card">
                     <h4>Need {activeService.title}?</h4>
-                    <p>Discuss scope, sprint velocity, and get a tailored estimate within 24 hours.</p>
-                    <motion.button
-                      whileHover={{ scale: 1.03 }}
-                      whileTap={{ scale: 0.97 }}
-                      className="btn btn-primary cta-proposal-btn"
-                      onClick={openContactModal}
-                    >
-                      <span>Request Custom Proposal</span>
-                      <ArrowRight size={16} />
-                    </motion.button>
+                    <p>
+                      {activeService.id === 'mock-interview'
+                        ? 'Reserve your 1-on-1 slot with senior engineering tech leads and get real-time feedback.'
+                        : 'Discuss scope, sprint velocity, and get a tailored estimate within 24 hours.'}
+                    </p>
+                    {activeService.id === 'mock-interview' && setCurrentPage ? (
+                      <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="btn btn-primary cta-proposal-btn"
+                        onClick={() => {
+                          setCurrentPage('interview')
+                          window.scrollTo({ top: 0, behavior: 'smooth' })
+                        }}
+                      >
+                        <span>Schedule Mock Interview</span>
+                        <Calendar size={16} />
+                      </motion.button>
+                    ) : (
+                      <motion.button
+                        whileHover={{ scale: 1.03 }}
+                        whileTap={{ scale: 0.97 }}
+                        className="btn btn-primary cta-proposal-btn"
+                        onClick={openContactModal}
+                      >
+                        <span>Request Custom Proposal</span>
+                        <ArrowRight size={16} />
+                      </motion.button>
+                    )}
                   </div>
                 </div>
               </div>
