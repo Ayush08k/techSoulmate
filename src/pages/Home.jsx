@@ -149,31 +149,6 @@ export const partnership = new TechSoulmate({
 await partnership.deliverSuccess();`}</code>
                 </pre>
               </div>
-
-              {/* Floating metrics badge */}
-              <motion.div
-                className="floating-stat-box box-top"
-                animate={{ y: [0, -8, 0] }}
-                transition={{ repeat: Infinity, duration: 4, ease: 'easeInOut' }}
-              >
-                <Zap size={20} className="stat-icon-amber" />
-                <div>
-                  <div className="stat-val">3x Faster</div>
-                  <div className="stat-desc">Modernized Sprints</div>
-                </div>
-              </motion.div>
-
-              <motion.div
-                className="floating-stat-box box-bottom"
-                animate={{ y: [0, 8, 0] }}
-                transition={{ repeat: Infinity, duration: 4.5, ease: 'easeInOut', delay: 1 }}
-              >
-                <ShieldCheck size={20} className="stat-icon-indigo" />
-                <div>
-                  <div className="stat-val">Zero Downtime</div>
-                  <div className="stat-desc">Legacy Upgrades</div>
-                </div>
-              </motion.div>
             </div>
           </motion.div>
         </div>
