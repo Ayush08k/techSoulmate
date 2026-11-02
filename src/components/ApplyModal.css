@@ -1,0 +1,33 @@
+.apply-modal-box {
+  max-width: 650px;
+}
+
+.apply-header {
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.apply-header h2 {
+  font-size: 1.7rem;
+  margin: 10px 0 8px 0;
+  color: var(--text-main);
+}
+
+.apply-meta {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.meta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.85rem;
+  color: #BE185D;
+  background: rgba(244, 114, 182, 0.12);
+  padding: 4px 12px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(225, 29, 116, 0.22);
+  font-weight: 500;
+}
